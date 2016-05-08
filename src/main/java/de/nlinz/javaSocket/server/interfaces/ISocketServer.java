@@ -1,9 +1,9 @@
-package de.nlinz.system.server.eva.interfaces;
+package de.nlinz.javaSocket.server.interfaces;
 
-import de.nlinz.system.server.eva.server.ConnectedClient;
-import de.nlinz.system.server.eva.server.SocketServer;
+import de.nlinz.javaSocket.server.run.ConnectedClient;
+import de.nlinz.javaSocket.server.run.SocketServer;
 
-public interface IEvaServer {
+public interface ISocketServer {
 	void onConnect(final ConnectedClient p0);
 
 	void onDataRecieve(final ConnectedClient p0, String channel, final byte[] bytes);

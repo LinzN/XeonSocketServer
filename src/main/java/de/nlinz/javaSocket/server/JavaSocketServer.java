@@ -1,5 +1,5 @@
 
-package de.nlinz.system.server.eva;
+package de.nlinz.javaSocket.server;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -11,16 +11,16 @@ import java.util.HashSet;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import de.nlinz.system.server.eva.interfaces.EvaEventType;
-import de.nlinz.system.server.eva.interfaces.IDataListener;
-import de.nlinz.system.server.eva.interfaces.IEvaServer;
-import de.nlinz.system.server.eva.interfaces.ITypeListener;
-import de.nlinz.system.server.eva.server.ConnectedClient;
-import de.nlinz.system.server.eva.server.SocketDataEvent;
-import de.nlinz.system.server.eva.server.SocketServer;
-import de.nlinz.system.server.eva.server.SocketTypeEvent;
+import de.nlinz.javaSocket.server.events.SocketDataEvent;
+import de.nlinz.javaSocket.server.events.SocketTypeEvent;
+import de.nlinz.javaSocket.server.interfaces.SocketServerEventType;
+import de.nlinz.javaSocket.server.interfaces.IDataListener;
+import de.nlinz.javaSocket.server.interfaces.ISocketServer;
+import de.nlinz.javaSocket.server.interfaces.ITypeListener;
+import de.nlinz.javaSocket.server.run.ConnectedClient;
+import de.nlinz.javaSocket.server.run.SocketServer;
 
-public class EvaServer implements IEvaServer {
+public class JavaSocketServer implements ISocketServer {
 
 	/* Variables and instances */
 	private SocketServer server;
@@ -30,7 +30,7 @@ public class EvaServer implements IEvaServer {
 	private static HashSet<ITypeListener> typeListeners = new HashSet<ITypeListener>();
 
 	/* Create this new Instance of EvaServer with the IEvaServer interface */
-	public EvaServer(String hostName, int port) {
+	public JavaSocketServer(String hostName, int port) {
 		this.hostName = hostName;
 		this.port = port;
 	}
@@ -84,7 +84,7 @@ public class EvaServer implements IEvaServer {
 
 	/* Call when a new client join the network */
 	public void onConnect(final ConnectedClient mess) {
-		final EvaEventType type = EvaEventType.CONNECT;
+		final SocketServerEventType type = SocketServerEventType.CONNECT;
 		final SocketTypeEvent event = new SocketTypeEvent(mess);
 		for (ITypeListener listener : typeListeners) {
 			if (listener.getType() == type) {
@@ -97,7 +97,7 @@ public class EvaServer implements IEvaServer {
 
 	/* Call when a client leave the network */
 	public void onDisconnect(final ConnectedClient mess) {
-		final EvaEventType type = EvaEventType.DISCONNECT;
+		final SocketServerEventType type = SocketServerEventType.DISCONNECT;
 		final SocketTypeEvent event = new SocketTypeEvent(mess);
 		for (ITypeListener listener : typeListeners) {
 			if (listener.getType() == type) {

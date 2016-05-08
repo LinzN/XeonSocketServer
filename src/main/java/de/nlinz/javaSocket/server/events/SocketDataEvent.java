@@ -1,6 +1,8 @@
-package de.nlinz.system.server.eva.server;
+package de.nlinz.javaSocket.server.events;
 
 import java.io.ByteArrayOutputStream;
+
+import de.nlinz.javaSocket.server.run.ConnectedClient;
 
 public class SocketDataEvent {
 	private ConnectedClient mess;

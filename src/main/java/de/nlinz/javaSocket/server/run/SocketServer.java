@@ -1,4 +1,4 @@
-package de.nlinz.system.server.eva.server;
+package de.nlinz.javaSocket.server.run;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -6,16 +6,16 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import de.nlinz.system.server.eva.interfaces.IEvaServer;
+import de.nlinz.javaSocket.server.interfaces.ISocketServer;
 
 public class SocketServer implements Runnable {
 	private ServerSocket server;
 	private int port;
 	private String host;
-	private IEvaServer app;
+	private ISocketServer app;
 	ArrayList<ConnectedClient> connectedClients;
 
-	public SocketServer(final IEvaServer app, final int port, final String host) {
+	public SocketServer(final ISocketServer app, final int port, final String host) {
 		this.port = port;
 		this.host = host;
 		this.app = app;
@@ -41,7 +41,7 @@ public class SocketServer implements Runnable {
 		return this.port;
 	}
 
-	public IEvaServer getApp() {
+	public ISocketServer getApp() {
 		return this.app;
 	}
 

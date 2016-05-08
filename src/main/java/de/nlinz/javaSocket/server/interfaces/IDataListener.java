@@ -1,6 +1,6 @@
-package de.nlinz.system.server.eva.interfaces;
+package de.nlinz.javaSocket.server.interfaces;
 
-import de.nlinz.system.server.eva.server.SocketDataEvent;
+import de.nlinz.javaSocket.server.events.SocketDataEvent;
 
 public interface IDataListener {
 

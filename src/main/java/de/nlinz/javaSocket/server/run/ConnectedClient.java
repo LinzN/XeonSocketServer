@@ -1,4 +1,4 @@
-package de.nlinz.system.server.eva.server;
+package de.nlinz.javaSocket.server.run;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
