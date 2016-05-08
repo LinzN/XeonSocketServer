@@ -1,7 +1,7 @@
 package de.nlinz.javaSocket.server;
 
 public class SocketDebug {
-	private static String prefix = "[EVA]";
+	private static String prefix = "[SocketServer]";
 
 	public static void sendStartSuccess(String adress) {
 		System.out.println(prefix + "Server " + adress + " succesful started!");
