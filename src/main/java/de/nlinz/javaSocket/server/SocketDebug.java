@@ -26,4 +26,8 @@ public class SocketDebug {
 	public static void sendDeleteClient(String client) {
 		System.out.println(prefix + "Client " + client + " lost connection!");
 	}
+
+	public static void customText(String text) {
+		System.out.println(prefix + text);
+	}
 }
