@@ -1,5 +1,6 @@
 package de.nlinz.javaSocket.server;
 
+/* Debug outpot for the socketServer*/
 public class SocketDebug {
 	private static String prefix = "[SocketServer]";
 

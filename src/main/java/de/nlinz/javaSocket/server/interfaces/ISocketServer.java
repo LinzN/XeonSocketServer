@@ -3,6 +3,7 @@ package de.nlinz.javaSocket.server.interfaces;
 import de.nlinz.javaSocket.server.run.ConnectedClient;
 import de.nlinz.javaSocket.server.run.SocketServer;
 
+/* Interface for the SocketServer*/
 public interface ISocketServer {
 	void onConnect(final ConnectedClient p0);
 

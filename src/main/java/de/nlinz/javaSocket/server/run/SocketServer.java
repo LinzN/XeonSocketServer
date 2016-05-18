@@ -8,11 +8,14 @@ import java.util.ArrayList;
 
 import de.nlinz.javaSocket.server.interfaces.ISocketServer;
 
+/* SocketServer. Check if a new client is connected*/
 public class SocketServer implements Runnable {
+	/* Variables */
 	private ServerSocket server;
 	private int port;
 	private String host;
 	private ISocketServer app;
+	/* Stored all connected clients */
 	ArrayList<ConnectedClient> connectedClients;
 
 	public SocketServer(final ISocketServer app, final int port, final String host) {
@@ -37,18 +40,23 @@ public class SocketServer implements Runnable {
 		}
 	}
 
+	/* Return the port of the socketConnection */
 	public int getPort() {
 		return this.port;
 	}
 
+	/* Return the Interface of the SocketServer */
 	public ISocketServer getApp() {
 		return this.app;
 	}
 
+	/* Return the SocketServer */
 	public ServerSocket getServerSocket() {
 		return this.server;
 	}
 
+	/* Get new clients if a client is trying to connect */
+	@Override
 	public void run() {
 		while (!this.server.isClosed()) {
 			try {
@@ -63,6 +71,7 @@ public class SocketServer implements Runnable {
 		}
 	}
 
+	/* Close this socketServer */
 	public IOException close() {
 		if (!this.server.isClosed()) {
 			try {
@@ -77,10 +86,12 @@ public class SocketServer implements Runnable {
 		return null;
 	}
 
+	/* Return all connected clients */
 	public ArrayList<ConnectedClient> getConnectedClients() {
 		return new ArrayList<ConnectedClient>(this.connectedClients);
 	}
 
+	/* Check if the client is available */
 	public boolean isEnabled() {
 		return !this.server.isClosed();
 	}

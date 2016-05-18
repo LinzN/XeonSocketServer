@@ -13,10 +13,10 @@ import java.util.concurrent.TimeUnit;
 
 import de.nlinz.javaSocket.server.events.SocketDataEvent;
 import de.nlinz.javaSocket.server.events.SocketTypeEvent;
-import de.nlinz.javaSocket.server.interfaces.SocketServerEventType;
 import de.nlinz.javaSocket.server.interfaces.IDataListener;
 import de.nlinz.javaSocket.server.interfaces.ISocketServer;
 import de.nlinz.javaSocket.server.interfaces.ITypeListener;
+import de.nlinz.javaSocket.server.interfaces.SocketServerEventType;
 import de.nlinz.javaSocket.server.run.ConnectedClient;
 import de.nlinz.javaSocket.server.run.SocketServer;
 
@@ -26,6 +26,7 @@ public class JavaSocketServer implements ISocketServer {
 	private SocketServer server;
 	private String hostName;
 	private int port;
+	/* HashSets for storing the external eventlistener */
 	private static HashSet<IDataListener> dataListeners = new HashSet<IDataListener>();
 	private static HashSet<ITypeListener> typeListeners = new HashSet<ITypeListener>();
 
@@ -68,11 +69,13 @@ public class JavaSocketServer implements ISocketServer {
 	}
 
 	/* Runnable to start the SocketServer */
+	@Override
 	public void runTaskSocketServer(final SocketServer server) {
 		Executors.newScheduledThreadPool(1).schedule(server, 0, TimeUnit.MILLISECONDS);
 	}
 
 	/* Runnable to start a new ConnectedClient */
+	@Override
 	public void runTaskConnectedClient(final ConnectedClient mess) {
 		Executors.newScheduledThreadPool(1).schedule(mess, 0, TimeUnit.MILLISECONDS);
 	}
@@ -83,6 +86,7 @@ public class JavaSocketServer implements ISocketServer {
 	}
 
 	/* Call when a new client join the network */
+	@Override
 	public void onConnect(final ConnectedClient mess) {
 		final SocketServerEventType type = SocketServerEventType.CONNECT;
 		final SocketTypeEvent event = new SocketTypeEvent(mess);
@@ -96,6 +100,7 @@ public class JavaSocketServer implements ISocketServer {
 	}
 
 	/* Call when a client leave the network */
+	@Override
 	public void onDisconnect(final ConnectedClient mess) {
 		final SocketServerEventType type = SocketServerEventType.DISCONNECT;
 		final SocketTypeEvent event = new SocketTypeEvent(mess);
@@ -109,6 +114,7 @@ public class JavaSocketServer implements ISocketServer {
 	}
 
 	/* Call when a receiving data from a ConnectedClient */
+	@Override
 	public void onDataRecieve(final ConnectedClient mess, final String channel, final byte[] bytes) {
 		final SocketDataEvent event = new SocketDataEvent(mess, channel, bytes);
 		for (IDataListener listener : dataListeners) {

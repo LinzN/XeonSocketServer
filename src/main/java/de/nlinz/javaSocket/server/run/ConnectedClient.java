@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.util.UUID;
 
+/* Create this for every new client.*/
 public class ConnectedClient implements Runnable {
 	private Socket socket;
 	private SocketServer server;
@@ -19,6 +20,8 @@ public class ConnectedClient implements Runnable {
 		this.clientUUID = UUID.randomUUID();
 	}
 
+	/* Runnable for check if the client send bytes */
+	@Override
 	public void run() {
 		try {
 			this.inputStream = new DataInputStream(this.socket.getInputStream());
@@ -30,7 +33,7 @@ public class ConnectedClient implements Runnable {
 					continue;
 				}
 
-				byte[] bytes = new byte[(int) inputStream.available()];
+				byte[] bytes = new byte[inputStream.available()];
 				this.inputStream.readFully(bytes);
 				this.server.getApp().onDataRecieve(this, channel, bytes);
 
@@ -40,14 +43,17 @@ public class ConnectedClient implements Runnable {
 		}
 	}
 
+	/* Return the SocketServer */
 	public SocketServer getServer() {
 		return this.server;
 	}
 
+	/* Check if the client is connected and available */
 	public boolean isConnectedAndOpened() {
 		return this.getSocket().isConnected() && !this.getSocket().isClosed();
 	}
 
+	/* Send data to this client */
 	public void write(ByteArrayOutputStream bytes) {
 		try {
 			OutputStream out = this.socket.getOutputStream();
@@ -59,6 +65,7 @@ public class ConnectedClient implements Runnable {
 		}
 	}
 
+	/* Close this client */
 	public void close() {
 		if (!this.socket.isClosed()) {
 			try {
@@ -71,10 +78,12 @@ public class ConnectedClient implements Runnable {
 		}
 	}
 
+	/* Return the socket */
 	public Socket getSocket() {
 		return this.socket;
 	}
 
+	/* Return the UUID of this client */
 	public UUID getClientUUID() {
 		return this.clientUUID;
 	}
