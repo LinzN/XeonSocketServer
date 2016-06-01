@@ -8,9 +8,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashSet;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
+import de.nlinz.cookieSocketBungee.mask.CookieSocketBungeeMask;
 import de.nlinz.javaSocket.server.events.SocketDataEvent;
 import de.nlinz.javaSocket.server.events.SocketTypeEvent;
 import de.nlinz.javaSocket.server.interfaces.IDataListener;
@@ -19,6 +18,7 @@ import de.nlinz.javaSocket.server.interfaces.ITypeListener;
 import de.nlinz.javaSocket.server.interfaces.SocketServerEventType;
 import de.nlinz.javaSocket.server.run.ConnectedClient;
 import de.nlinz.javaSocket.server.run.SocketServer;
+import net.md_5.bungee.api.ProxyServer;
 
 public class JavaSocketServer implements ISocketServer {
 
@@ -71,18 +71,18 @@ public class JavaSocketServer implements ISocketServer {
 	/* Runnable to start the SocketServer */
 	@Override
 	public void runTaskSocketServer(final SocketServer server) {
-		Executors.newScheduledThreadPool(1).schedule(server, 0, TimeUnit.MILLISECONDS);
+		ProxyServer.getInstance().getScheduler().runAsync(CookieSocketBungeeMask.inst(), server);
 	}
 
 	/* Runnable to start a new ConnectedClient */
 	@Override
 	public void runTaskConnectedClient(final ConnectedClient mess) {
-		Executors.newScheduledThreadPool(1).schedule(mess, 0, TimeUnit.MILLISECONDS);
+		ProxyServer.getInstance().getScheduler().runAsync(CookieSocketBungeeMask.inst(), mess);
 	}
 
 	/* Runnable for default type */
 	public void runTask(final Runnable runnable) {
-		Executors.newScheduledThreadPool(1).schedule(runnable, 0, TimeUnit.MILLISECONDS);
+		ProxyServer.getInstance().getScheduler().runAsync(CookieSocketBungeeMask.inst(), runnable);
 	}
 
 	/* Call when a new client join the network */

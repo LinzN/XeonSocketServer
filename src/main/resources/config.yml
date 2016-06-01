@@ -1,0 +1,6 @@
+#Connection settings for starting the communication server
+connect:
+  #Hostname/IP to bind
+  host: 127.0.0.1
+  #Port to bind
+  port: 8826
