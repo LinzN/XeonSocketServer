@@ -9,16 +9,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashSet;
 
-import de.nlinz.cookieSocketBungee.mask.CookieSocketBungeeMask;
 import de.nlinz.javaSocket.server.events.SocketDataEvent;
 import de.nlinz.javaSocket.server.events.SocketTypeEvent;
 import de.nlinz.javaSocket.server.interfaces.IDataListener;
+import de.nlinz.javaSocket.server.interfaces.IServerMask;
 import de.nlinz.javaSocket.server.interfaces.ISocketServer;
 import de.nlinz.javaSocket.server.interfaces.ITypeListener;
 import de.nlinz.javaSocket.server.interfaces.SocketServerEventType;
 import de.nlinz.javaSocket.server.run.ConnectedClient;
 import de.nlinz.javaSocket.server.run.SocketServer;
-import net.md_5.bungee.api.ProxyServer;
 
 public class JavaSocketServer implements ISocketServer {
 
@@ -26,12 +25,14 @@ public class JavaSocketServer implements ISocketServer {
 	private SocketServer server;
 	private String hostName;
 	private int port;
+	private IServerMask mask;
 	/* HashSets for storing the external eventlistener */
 	private static HashSet<IDataListener> dataListeners = new HashSet<IDataListener>();
 	private static HashSet<ITypeListener> typeListeners = new HashSet<ITypeListener>();
 
 	/* Create this new Instance of EvaServer with the IEvaServer interface */
-	public JavaSocketServer(String hostName, int port) {
+	public JavaSocketServer(IServerMask mask, String hostName, int port) {
+		this.mask = mask;
 		this.hostName = hostName;
 		this.port = port;
 	}
@@ -68,21 +69,10 @@ public class JavaSocketServer implements ISocketServer {
 		return true;
 	}
 
-	/* Runnable to start the SocketServer */
-	@Override
-	public void runTaskSocketServer(final SocketServer server) {
-		ProxyServer.getInstance().getScheduler().runAsync(CookieSocketBungeeMask.inst(), server);
-	}
-
-	/* Runnable to start a new ConnectedClient */
-	@Override
-	public void runTaskConnectedClient(final ConnectedClient mess) {
-		ProxyServer.getInstance().getScheduler().runAsync(CookieSocketBungeeMask.inst(), mess);
-	}
-
 	/* Runnable for default type */
+	@Override
 	public void runTask(final Runnable runnable) {
-		ProxyServer.getInstance().getScheduler().runAsync(CookieSocketBungeeMask.inst(), runnable);
+		this.mask.serverScheduler(runnable);
 	}
 
 	/* Call when a new client join the network */

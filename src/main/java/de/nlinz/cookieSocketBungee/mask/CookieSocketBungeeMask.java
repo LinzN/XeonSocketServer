@@ -6,12 +6,14 @@ import java.nio.file.CopyOption;
 import java.nio.file.Files;
 
 import de.nlinz.javaSocket.server.JavaSocketServer;
+import de.nlinz.javaSocket.server.interfaces.IServerMask;
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 
-public class CookieSocketBungeeMask extends Plugin {
+public class CookieSocketBungeeMask extends Plugin implements IServerMask {
 	private static CookieSocketBungeeMask inst;
 
 	private String socketHost;
@@ -37,7 +39,7 @@ public class CookieSocketBungeeMask extends Plugin {
 		this.socketHost = this.config.getString("connect.host");
 		this.socketPort = this.config.getInt("connect.port");
 
-		this.socketServer = new JavaSocketServer(socketHost, socketPort);
+		this.socketServer = new JavaSocketServer(this, socketHost, socketPort);
 		this.socketServer.start();
 
 	}
@@ -64,5 +66,12 @@ public class CookieSocketBungeeMask extends Plugin {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	@Override
+	public void serverScheduler(Runnable runnable) {
+		// TODO Auto-generated method stub
+		ProxyServer.getInstance().getScheduler().runAsync(this, runnable);
+
 	}
 }

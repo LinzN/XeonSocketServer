@@ -1,7 +1,6 @@
 package de.nlinz.javaSocket.server.interfaces;
 
 import de.nlinz.javaSocket.server.run.ConnectedClient;
-import de.nlinz.javaSocket.server.run.SocketServer;
 
 /* Interface for the SocketServer*/
 public interface ISocketServer {
@@ -11,7 +10,6 @@ public interface ISocketServer {
 
 	void onDisconnect(final ConnectedClient p0);
 
-	void runTaskConnectedClient(final ConnectedClient p0);
+	void runTask(final Runnable runnable);
 
-	void runTaskSocketServer(final SocketServer p0);
 }

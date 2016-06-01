@@ -33,7 +33,7 @@ public class SocketServer implements Runnable {
 		try {
 			this.server = new ServerSocket();
 			this.server.bind(new InetSocketAddress(this.host, this.port));
-			this.app.runTaskSocketServer(this);
+			this.app.runTask(this);
 			return null;
 		} catch (IOException e) {
 			return e;
@@ -65,7 +65,7 @@ public class SocketServer implements Runnable {
 				final ConnectedClient connectedClient = new ConnectedClient(this, socket);
 				this.connectedClients.add(connectedClient);
 				this.app.onConnect(connectedClient);
-				this.app.runTaskConnectedClient(connectedClient);
+				this.app.runTask(connectedClient);
 			} catch (IOException ex) {
 			}
 		}
