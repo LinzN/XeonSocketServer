@@ -32,13 +32,29 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
-        <configuration>
-          <archive>
-            <manifest>
-              <addClasspath>true</addClasspath>
-            </manifest>
-          </archive>
-        </configuration>
+                       <executions>
+                    <execution>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <id>api</id>
+                        <configuration>
+                            <finalName>cookieSocketServerApi-${project.version}</finalName>
+                            <excludes>
+                                <exclude>de/nlinz/cookieSocketBungee/</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <id>bungee</id>
+                        <configuration>
+                            <finalName>cookieSocketBungee-${project.version}</finalName>
+                        </configuration>
+                    </execution>
+              </executions>
       </plugin>
 		<plugin>
 			<groupId>org.apache.maven.plugins</groupId>
