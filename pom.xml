@@ -5,7 +5,7 @@
   <groupId>de.nlinz</groupId>
   <packaging>jar</packaging>
 
-  <name>cookieSocketServer</name>
+  <name>XeonSocketServer</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -39,9 +39,9 @@
                  </goals>
                  <id>api</id>
                  <configuration>
-                 	<finalName>cookieSocketServerApi-${project.version}</finalName>
+                 	<finalName>XeonSocketServerApi-${project.version}</finalName>
                  	<excludes>
-                    	<exclude>de/nlinz/cookieSocketBungee/</exclude>
+                    	<exclude>de/nlinz/xeonSocketBungee/</exclude>
                     </excludes>
                  </configuration>
               </execution>
@@ -51,7 +51,7 @@
                  </goals>
                  <id>bungee</id>
                  <configuration>
-                 	<finalName>cookieSocketServerBungee-${project.version}</finalName>
+                 	<finalName>XeonSocketServerBungee-${project.version}</finalName>
                  </configuration>
               </execution>
            </executions>
@@ -67,6 +67,6 @@
         </plugin>
     </plugins>
   </build>
-    <artifactId>cookieSocketServer</artifactId>
+    <artifactId>XeonSocketServer</artifactId>
     <version>1.0</version>
 </project>

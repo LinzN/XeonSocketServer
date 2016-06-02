@@ -1,4 +1,4 @@
-package de.nlinz.cookieSocketBungee.mask;
+package de.nlinz.xeonSocketBungee.mask;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,8 +13,8 @@ import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 
-public class CookieSocketBungeeMask extends Plugin implements IServerMask {
-	private static CookieSocketBungeeMask inst;
+public class XeonSocketBungeeMask extends Plugin implements IServerMask {
+	private static XeonSocketBungeeMask inst;
 
 	private String socketHost;
 	private int socketPort;
@@ -22,7 +22,7 @@ public class CookieSocketBungeeMask extends Plugin implements IServerMask {
 
 	private JavaSocketServer socketServer;
 
-	public static CookieSocketBungeeMask inst() {
+	public static XeonSocketBungeeMask inst() {
 		return inst;
 	}
 
