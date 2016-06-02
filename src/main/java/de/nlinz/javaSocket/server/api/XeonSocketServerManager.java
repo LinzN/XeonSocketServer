@@ -14,13 +14,13 @@ import de.nlinz.javaSocket.server.run.ConnectedClient;
 
 public class XeonSocketServerManager {
 	/* Send byte[] data to all connected clients */
-	public void sendData(ByteArrayOutputStream bytes) {
+	public static void sendData(ByteArrayOutputStream bytes) {
 		for (ConnectedClient sockMSG : SocketServerInitialisator.inst.getSocketServer().getConnectedClients()) {
 			sockMSG.write(bytes);
 		}
 	}
 
-	public void sendData(ConnectedClient client, ByteArrayOutputStream bytes) {
+	public static void sendData(ConnectedClient client, ByteArrayOutputStream bytes) {
 		client.write(bytes);
 	}
 
