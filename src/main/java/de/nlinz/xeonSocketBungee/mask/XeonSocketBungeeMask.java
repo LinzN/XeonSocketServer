@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.CopyOption;
 import java.nio.file.Files;
+import java.util.concurrent.TimeUnit;
 
 import de.nlinz.javaSocket.server.JavaSocketServer;
 import de.nlinz.javaSocket.server.interfaces.IServerMask;
@@ -69,9 +70,16 @@ public class XeonSocketBungeeMask extends Plugin implements IServerMask {
 	}
 
 	@Override
-	public void serverScheduler(Runnable runnable) {
+	public void serverSchedulerAsync(Runnable runnable) {
 		// TODO Auto-generated method stub
 		ProxyServer.getInstance().getScheduler().runAsync(this, runnable);
+
+	}
+
+	@Override
+	public void serverSchedulerSync(Runnable runnable) {
+		// TODO Auto-generated method stub
+		ProxyServer.getInstance().getScheduler().schedule(this, runnable, 0, TimeUnit.MILLISECONDS);
 
 	}
 }

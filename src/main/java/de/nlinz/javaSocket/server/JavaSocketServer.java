@@ -72,7 +72,7 @@ public class JavaSocketServer implements ISocketServer {
 	/* Runnable for default type */
 	@Override
 	public void runTask(final Runnable runnable) {
-		this.mask.serverScheduler(runnable);
+		this.mask.serverSchedulerAsync(runnable);
 	}
 
 	/* Call when a new client join the network */

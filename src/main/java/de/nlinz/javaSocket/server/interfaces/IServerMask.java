@@ -1,6 +1,8 @@
 package de.nlinz.javaSocket.server.interfaces;
 
 public interface IServerMask {
-	void serverScheduler(final Runnable runnable);
+	void serverSchedulerAsync(final Runnable runnable);
+
+	void serverSchedulerSync(final Runnable runnable);
 
 }
