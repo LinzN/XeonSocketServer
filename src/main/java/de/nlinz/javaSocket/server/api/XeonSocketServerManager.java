@@ -14,10 +14,14 @@ import de.nlinz.javaSocket.server.run.ConnectedClient;
 
 public class XeonSocketServerManager {
 	/* Send byte[] data to all connected clients */
-	public void sendBytesOut(ByteArrayOutputStream bytes) {
+	public void sendData(ByteArrayOutputStream bytes) {
 		for (ConnectedClient sockMSG : SocketServerInitialisator.inst.getSocketServer().getConnectedClients()) {
 			sockMSG.write(bytes);
 		}
+	}
+
+	public void sendData(ConnectedClient client, ByteArrayOutputStream bytes) {
+		client.write(bytes);
 	}
 
 	/* Register a new EVA DataListener */
@@ -45,7 +49,7 @@ public class XeonSocketServerManager {
 	}
 
 	/* Creating a new channel inputStream */
-	public static DataInputStream createInputStream(byte[] bytes) {
+	public static DataInputStream readDataInput(byte[] bytes) {
 		InputStream inputStream = new ByteArrayInputStream(bytes);
 		DataInputStream dataInputStream = new DataInputStream(inputStream);
 		return dataInputStream;
