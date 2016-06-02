@@ -6,7 +6,7 @@ import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.util.concurrent.TimeUnit;
 
-import de.nlinz.javaSocket.server.JavaSocketServer;
+import de.nlinz.javaSocket.server.SocketServerInitialisator;
 import de.nlinz.javaSocket.server.interfaces.IServerMask;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
@@ -21,7 +21,7 @@ public class XeonSocketBungeeMask extends Plugin implements IServerMask {
 	private int socketPort;
 	private Configuration config;
 
-	private JavaSocketServer socketServer;
+	private SocketServerInitialisator socketServer;
 
 	public static XeonSocketBungeeMask inst() {
 		return inst;
@@ -40,12 +40,12 @@ public class XeonSocketBungeeMask extends Plugin implements IServerMask {
 		this.socketHost = this.config.getString("connect.host");
 		this.socketPort = this.config.getInt("connect.port");
 
-		this.socketServer = new JavaSocketServer(this, socketHost, socketPort);
+		this.socketServer = new SocketServerInitialisator(this, socketHost, socketPort);
 		this.socketServer.start();
 
 	}
 
-	public JavaSocketServer getSocketServer() {
+	public SocketServerInitialisator getSocketServer() {
 		return this.socketServer;
 	}
 
