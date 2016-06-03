@@ -1,4 +1,4 @@
-name: XeonSocketBungee
+name: XeonSocketServerBungee
 main : de.nlinz.xeonSocketBungee.mask.XeonSocketBungeeMask
 version: ${project.version}.b${build.number}
 author: Kekshaus
