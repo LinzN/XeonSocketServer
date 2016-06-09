@@ -36,7 +36,7 @@
 						</goals>
 						<id>api</id>
 						<configuration>
-							<finalName>XeonSocketServerApi-${project.version}</finalName>
+							<finalName>XeonSocketServer-Api</finalName>
 							<excludes>
 								<exclude>de/nlinz/xeonSocketBungee/</exclude>
 							</excludes>
@@ -48,7 +48,7 @@
 						</goals>
 						<id>bungee</id>
 						<configuration>
-							<finalName>XeonSocketServerBungee-${project.version}</finalName>
+							<finalName>XeonSocketServer-Bungee</finalName>
 						</configuration>
 					</execution>
 				</executions>
