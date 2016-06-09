@@ -31,6 +31,7 @@ public class SocketServerInitialisator implements ISocketServer {
 		this.mask = mask;
 		this.hostName = hostName;
 		this.port = port;
+		inst = this;
 	}
 
 	/* Get this running SocketServer instance */
