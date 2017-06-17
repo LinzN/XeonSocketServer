@@ -6,6 +6,8 @@ import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.util.concurrent.TimeUnit;
 
+import org.bstats.Metrics;
+
 import de.nlinz.javaSocket.server.SocketServerInitialisator;
 import de.nlinz.javaSocket.server.interfaces.IServerMask;
 import net.md_5.bungee.api.ProxyServer;
@@ -42,6 +44,7 @@ public class XeonSocketBungeeMask extends Plugin implements IServerMask {
 
 		this.socketServer = new SocketServerInitialisator(this, socketHost, socketPort);
 		this.socketServer.start();
+		new Metrics(this);
 
 	}
 
