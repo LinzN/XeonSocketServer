@@ -11,10 +11,6 @@
 			<id>BungeeCord-repo</id>
 			<url>https://oss.sonatype.org/content/groups/public</url>
 		</repository>
-		<repository>
-			<id>Bytearray-repo</id>
-			<url>https://repo.bytearray.de/</url>
-		</repository>
 	</repositories>
 	<dependencies>
 		<!--Spigot API -->
