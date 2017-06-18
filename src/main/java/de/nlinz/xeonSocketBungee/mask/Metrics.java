@@ -1,4 +1,4 @@
-package org.bstats;
+package de.nlinz.xeonSocketBungee.mask;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -41,6 +41,15 @@ import java.util.zip.GZIPOutputStream;
  */
 public class Metrics {
 
+    static {
+        // Maven's Relocate is clever and changes strings, too. So we have to use this little "trick" ... :D
+        final String defaultPackage = new String(new byte[] { 'o', 'r', 'g', '.', 'b', 's', 't', 'a', 't', 's' });
+        final String examplePackage = new String(new byte[] { 'y', 'o', 'u', 'r', '.', 'p', 'a', 'c', 'k', 'a', 'g', 'e' });
+        // We want to make sure nobody just copy & pastes the example and use the wrong package names
+        if (Metrics.class.getPackage().getName().equals(defaultPackage) || Metrics.class.getPackage().getName().equals(examplePackage)) {
+            throw new IllegalStateException("bStats Metrics class has not been relocated correctly!");
+        }
+    }
 
     // The version of this bStats class
     public static final int B_STATS_VERSION = 1;
